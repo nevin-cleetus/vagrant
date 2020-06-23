@@ -8,18 +8,37 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: "bootstrap.sh"
 
   # Kubernetes Master Server
-  config.vm.define "docker" do |docker|
-    docker.vm.box = "centos/7"
-    docker.vm.hostname = "docker"
-    docker.vm.network "private_network", ip: "172.42.42.100"
-    docker.vm.provider "virtualbox" do |v|
-      v.name = "docker"
-      v.memory = 3548
+  config.vm.define "kmaster" do |kmaster|
+    kmaster.vm.box = "centos/7"
+    kmaster.vm.hostname = "kmaster"
+    kmaster.vm.network "private_network", ip: "172.42.42.100"
+    kmaster.vm.provider "virtualbox" do |v|
+      v.name = "kmaster"
+      v.memory = 2048
       v.cpus = 2
       # Prevent VirtualBox from interfering with host audio stack
       v.customize ["modifyvm", :id, "--audio", "none"]
     end
-    
+    kmaster.vm.provision "shell", path: "bootstrap_kmaster.sh"
+  end
+
+  NodeCount = 2
+
+  # Kubernetes Worker Nodes
+  (1..NodeCount).each do |i|
+    config.vm.define "kworker#{i}" do |workernode|
+      workernode.vm.box = "centos/7"
+      workernode.vm.hostname = "kworker#{i}"
+      workernode.vm.network "private_network", ip: "172.42.42.10#{i}"
+      workernode.vm.provider "virtualbox" do |v|
+        v.name = "kworker#{i}"
+        v.memory = 1524
+        v.cpus = 1
+        # Prevent VirtualBox from interfering with host audio stack
+        v.customize ["modifyvm", :id, "--audio", "none"]
+      end
+      workernode.vm.provision "shell", path: "bootstrap_kworker.sh"
+    end
   end
 
 end
