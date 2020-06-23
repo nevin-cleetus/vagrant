@@ -13,8 +13,14 @@ https://www.vagrantup.com/
 
 Go to the provisioning folder and run  
 
+Download the vagrant folder and place it in D:\
+
+Open the Oracle virutal box - > 
+
 vagrant init
 vagrant up
+
+Connect to the VM using  username/password  is vagrant/vagrant      [Root password  vagrant]
 
 If the vm creation fail with error "Virtualization need to be enabled", restart the machine and during the boot time, 
 press F11/F12 and enable the virtualization from the BIOS setup.
