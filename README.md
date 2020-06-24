@@ -1,5 +1,13 @@
 
 
+sudo yum install git
+
+mkdir k8repo
+cd k8repo
+
+git clone https://github.com/nevin-cleetus/vagrant.git
+
+
 kubectl create namespace monitoring
 
 kubectl apply -f cluster-role.yml 
