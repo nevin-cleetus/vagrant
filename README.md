@@ -7,6 +7,7 @@ cd k8repo
 
 git clone https://github.com/nevin-cleetus/vagrant.git
 
+cd vagrant
 
 kubectl create namespace monitoring
 
