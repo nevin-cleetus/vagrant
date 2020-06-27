@@ -47,8 +47,12 @@ For Exp -
 Prometheus & Grafana on Kubernetes Docker 
 =========================================
 
-You may rename the Vagrant_docker to Vagrant ( The default Vagrant file in the repo to Vagrant_Kubernetes)
+You may rename the Vagrant_docker to Vagrant (The default Vagrant file in the repo to Vagrant_Kubernetes). 
+
+Run the vagrant command
+
 vagrant up 
+
 
 This should create a VM with docker installed in it.  You may then install prometheus and Grafana as either docker container or install as normal installation.
 
